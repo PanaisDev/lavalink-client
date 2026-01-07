@@ -14,3 +14,5 @@ export * from "./structures/Types/Queue";
 export * from "./structures/Types/Node";
 export * from "./structures/Constants";
 export * from "./structures/Types/Manager";
+export * from "./structures/AdvertisementManager";
+export * from "./structures/Types/Advertisement";

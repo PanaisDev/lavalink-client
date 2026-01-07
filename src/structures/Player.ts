@@ -3,6 +3,7 @@ import { bandCampSearch } from "./CustomSearches/BandCampSearch";
 import { FilterManager } from "./Filters";
 import { Queue, QueueSaver } from "./Queue";
 import { queueTrackEnd } from "./Utils";
+import { AdvertisementManager } from "./AdvertisementManager";
 
 import type { DestroyReasons } from "./Constants";
 import type { Track, UnresolvedTrack } from "./Types/Track";
@@ -24,6 +25,8 @@ export class Player {
     public node: LavalinkNode;
     /** The queue from the player */
     public queue: Queue;
+    /** Advertisement Manager for post-roll ads */
+    public advertisementManager: AdvertisementManager;
 
     /** The Guild Id of the Player */
     public guildId: string;
@@ -146,6 +149,7 @@ export class Player {
         if (!dontEmitPlayerCreateEvent) this.LavalinkManager.emit("playerCreate", this);
 
         this.queue = new Queue(this.guildId, {}, new QueueSaver(this.LavalinkManager.options.queueOptions), this.LavalinkManager.options.queueOptions)
+        this.advertisementManager = new AdvertisementManager(this);
     }
 
     /**

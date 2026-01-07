@@ -59,6 +59,13 @@ export enum DebugEvents {
     PlayerDestroyFail = "PlayerDestroyFail",
     PlayerChangeNodeFailNoEligibleNode = "PlayerChangeNodeFailNoEligibleNode",
     PlayerChangeNodeFail = "PlayerChangeNodeFail",
+
+    // Advertisement events
+    AdvertisementStart = "AdvertisementStart",
+    AdvertisementEnd = "AdvertisementEnd",
+    AdvertisementSkip = "AdvertisementSkip",
+    AdvertisementError = "AdvertisementError",
+    AdvertisementQueueAdd = "AdvertisementQueueAdd",
 }
 
 /**

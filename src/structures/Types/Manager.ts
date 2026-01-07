@@ -7,6 +7,7 @@ import type { LavalinkNodeOptions } from "./Node";
 import type { DestroyReasonsType, PlayerJson, PlayerOptions } from "./Player";
 import type { ManagerQueueOptions } from "./Queue";
 import type { Track, UnresolvedTrack } from "./Track";
+import type { AdvertisementTrack } from "./Advertisement";
 import type { GuildShardPayload, SearchPlatform, SponsorBlockChaptersLoaded, SponsorBlockChapterStarted, SponsorBlockSegmentSkipped, SponsorBlockSegmentsLoaded, TrackExceptionEvent, TrackEndEvent, TrackStuckEvent, WebSocketClosedEvent, TrackStartEvent, LyricsFoundEvent, LyricsNotFoundEvent, LyricsLineEvent } from "./Utils";
 
 /**
@@ -192,6 +193,30 @@ export interface LavalinkManagerEvents<CustomPlayerT extends Player = Player> {
     "playerResumed": (player: CustomPlayerT, track: Track | UnresolvedTrack | null) => void;
 
     "playerPaused": (player: CustomPlayerT, track: Track | UnresolvedTrack | null) => void;
+
+    /**
+     * Emitted when an advertisement starts playing
+     * @event Manager#advertisementStart
+     */
+    "advertisementStart": (player: CustomPlayerT, ad: AdvertisementTrack) => void;
+
+    /**
+     * Emitted when an advertisement ends
+     * @event Manager#advertisementEnd
+     */
+    "advertisementEnd": (player: CustomPlayerT, ad: AdvertisementTrack, reason: string) => void;
+
+    /**
+     * Emitted when an advertisement is skipped
+     * @event Manager#advertisementSkip
+     */
+    "advertisementSkip": (player: CustomPlayerT, ad: AdvertisementTrack) => void;
+
+    /**
+     * Emitted when an advertisement encounters an error
+     * @event Manager#advertisementError
+     */
+    "advertisementError": (player: CustomPlayerT, ad: AdvertisementTrack | null, error: Error | string) => void;
 }
 /**
  * The Bot client Options needed for the manager
