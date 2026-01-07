@@ -98,7 +98,14 @@ export const DefaultSources: Record<SearchPlatform, LavalinkSearchPlatform | Cli
     "jiosaavn": "jssearch",
     "js": "jssearch",
     "jssearch": "jssearch",
-    "jsrec": "jsrec"
+    "jsrec": "jsrec",
+    // Amazon Music (lavasrc)
+    "amazon music": "amznsearch",
+    "amazonmusic": "amznsearch",
+    "amznsearch": "amznsearch",
+    "amzn": "amznsearch",
+    "musicamazon": "amznsearch",
+    "music amazon": "amznsearch",
 }
 
 /** Lavalink Plugins definiton */
@@ -159,6 +166,15 @@ export const SourceLinksRegexes: Record<SourcesRegex, RegExp> = {
 
     /** From jiosaavn-plugin */
     jiosaavn: /(https?:\/\/)(www\.)?jiosaavn\.com\/(?<type>song|album|featured|artist)\/([a-zA-Z0-9-_/,]+)/,
+
+    /** Amazon Music regexes */
+    AmazonMusicTrackRegex: /https?:\/\/(?:www\.)?music\.amazon\.[a-z\.]+\/tracks\/(?<identifier>[A-Za-z0-9]+)/,
+    AmazonMusicAlbumRegex: /https?:\/\/(?:www\.)?music\.amazon\.[a-z\.]+\/albums\/(?<identifier>[A-Za-z0-9]+)/,
+    AmazonMusicPlaylistRegex: /https?:\/\/(?:www\.)?music\.amazon\.[a-z\.]+\/playlists\/(?<identifier>[A-Za-z0-9]+)/,
+    AmazonMusicArtistRegex: /https?:\/\/(?:www\.)?music\.amazon\.[a-z\.]+\/artists\/(?<identifier>[A-Za-z0-9]+)/,
+    AmazonMusicUserPlaylistRegex: /https?:\/\/(?:www\.)?music\.amazon\.[a-z\.]+\/user-playlists\/(?<identifier>[A-Za-z0-9]+)/,
+    AmazonMusicCommunityPlaylistRegex: /https?:\/\/(?:www\.)?music\.amazon\.[a-z\.]+\/community-playlists\/(?<identifier>[A-Za-z0-9]+)/,
+    AllAmazonMusicRegex: /https?:\/\/(?:www\.)?music\.amazon\.[a-z\.]+\/(?<type>tracks|albums|playlists|artists|user-playlists|community-playlists)\/(?<identifier>[A-Za-z0-9]+)/,
 
     /** From pandora */
     PandoraTrackRegex: /^@?(?:https?:\/\/)?(?:www\.)?pandora\.com\/artist\/[\w\-]+(?:\/[\w\-]+)*\/(?<identifier>TR[A-Za-z0-9]+)(?:[?#].*)?$/,

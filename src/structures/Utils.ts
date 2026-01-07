@@ -340,6 +340,9 @@ export class ManagerUtils {
         if (SourceLinksRegexes.tidal.test(queryString) && !node.info?.sourceManagers?.includes("tidal")) {
             throw new Error("Query / Link Provided for this Source but Lavalink Node has not 'tidal' enabled");
         }
+        if (SourceLinksRegexes.AllAmazonMusicRegex.test(queryString) && !node.info?.sourceManagers?.includes("amazonmusic")) {
+            throw new Error("Query / Link Provided for this Source but Lavalink Node has not 'amazonmusic' enabled via lavasrc-plugin");
+        }
         if (SourceLinksRegexes.AllPandoraRegex.test(queryString) && !node.info?.sourceManagers?.includes("pandora")) {
             throw new Error("Query / Link Provided for this Source but Lavalink Node has not 'pandora' enabled");
         }
@@ -386,7 +389,7 @@ export class ManagerUtils {
 
         if (!node.info) throw new Error("Lavalink Node does not have any info cached yet, not ready yet!")
 
-        if(!this.LavalinkManager.options?.autoChecks?.sourcesValidations) return;
+        if (!this.LavalinkManager.options?.autoChecks?.sourcesValidations) return;
 
         if (source === "amsearch" && !node.info?.sourceManagers?.includes("applemusic")) {
             throw new Error("Lavalink Node has not 'applemusic' enabled, which is required to have 'amsearch' work");
@@ -447,6 +450,9 @@ export class ManagerUtils {
         }
         if (source === "qbrec" && !node.info?.sourceManagers?.includes("qobuz")) {
             throw new Error("Lavalink Node has not 'qobuz' enabled, which is required to have 'qbrec' work");
+        }
+        if (source === "amznsearch" && !node.info?.sourceManagers?.includes("amazonmusic")) {
+            throw new Error("Lavalink Node has not 'amazonmusic' enabled via lavasrc-plugin, which is required to have 'amznsearch' work");
         }
         if (["pdsearch", "pdisrc", "pdrec"].includes(source) && !node.info?.sourceManagers?.includes("pandora")) {
             throw new Error("Lavalink Node has not 'pandora' enabled, which is required to have '" + source + "' work");

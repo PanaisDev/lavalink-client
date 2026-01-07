@@ -32,7 +32,8 @@ export type LavaSrcSearchPlatformBase =
     "qbrec" |
     "pdsearch" |
     "pdisrc" |
-    "pdrec";
+    "pdrec" |
+    "amznsearch";
 export type LavaSrcSearchPlatform = LavaSrcSearchPlatformBase | "ftts";
 
 export type JioSaavnSearchPlatform = "jssearch" | "jsrec";
@@ -68,6 +69,7 @@ export type ClientSearchPlatform =
     "dz" | "deezer" |
     "yandex" | "yandex music" | "yandexmusic" | "vk" | "vk music" | "vkmusic" | "tidal" | "tidal music" | "qobuz" |
     "pandora" | "pd" | "pandora music" | "pandoramusic" |
+    "amazon music" | "amazonmusic" | "amznsearch" | "amzn" | "musicamazon" | "music amazon" |
     "flowerytts" | "flowery" | "flowery.tts" | LavalinkClientSearchPlatformResolve | LavalinkClientSearchPlatform | "js" | "jiosaavn" | "td" | "tidal" | "tdrec";
 
 export type SearchPlatform = LavalinkSearchPlatform | ClientSearchPlatform;
@@ -101,6 +103,13 @@ export type SourcesRegex = "YoutubeRegex" |
     "aacpUrl" |
     "tiktok" |
     "mixcloud" |
+    "AmazonMusicTrackRegex" |
+    "AmazonMusicAlbumRegex" |
+    "AmazonMusicPlaylistRegex" |
+    "AmazonMusicArtistRegex" |
+    "AmazonMusicUserPlaylistRegex" |
+    "AmazonMusicCommunityPlaylistRegex" |
+    "AllAmazonMusicRegex" |
     "musicYandex" |
     "radiohost" |
     "bandcamp" |
