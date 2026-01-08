@@ -10,9 +10,7 @@ export interface AdvertisementTrack {
     encoded: string;
     /** Duration in milliseconds */
     duration: number;
-    /** Whether the ad can be skipped */
-    skippable: boolean;
-    /** Delay in ms before skip is allowed (if skippable) */
+    /** Delay in ms before skip is allowed */
     skipDelay?: number;
     /** Custom user data */
     userData?: Record<string, unknown>;
@@ -24,8 +22,6 @@ export interface AdvertisementTrack {
 export interface AdvertisementOptions {
     /** Whether advertisements are enabled for this player */
     enabled: boolean;
-    /** Volume for advertisements (0-100, relative to player volume) */
-    volume?: number;
     /** Play an ad every N tracks (0 = disabled, 1 = after each track) */
     playEveryNTracks?: number;
 }

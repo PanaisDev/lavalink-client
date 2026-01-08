@@ -13,7 +13,6 @@ export class AdvertisementManager {
     /** Configuration options */
     private options: AdvertisementOptions = {
         enabled: false,
-        volume: 100,
         playEveryNTracks: 0
     };
 
@@ -140,12 +139,6 @@ export class AdvertisementManager {
         });
 
         try {
-            // Save current volume and apply ad volume
-            const originalVolume = this.player.volume;
-            if (this.options.volume !== undefined && this.options.volume !== originalVolume) {
-                await this.player.setVolume(this.options.volume);
-            }
-
             // Play the advertisement
             await this.player.node.updatePlayer({
                 guildId: this.player.guildId,
@@ -185,11 +178,6 @@ export class AdvertisementManager {
         }
 
         const ad = this.state.current;
-
-        // Check if skip is allowed
-        if (!ad.skippable) {
-            throw new Error("This advertisement cannot be skipped");
-        }
 
         // Check skip delay
         if (ad.skipDelay && this.state.startedAt) {
