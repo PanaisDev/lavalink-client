@@ -1,5 +1,3 @@
-import type { LavalinkTrack } from "./Track";
-
 /**
  * Audio advertisement track configuration
  */
@@ -14,6 +12,14 @@ export interface AdvertisementTrack {
     skipDelay?: number;
     /** Custom user data */
     userData?: Record<string, unknown>;
+    /** Sponsor/advertiser name */
+    sponsor?: string;
+    /** Banner image URL */
+    bannerUrl?: string;
+    /** Sponsor logo URL */
+    logoUrl?: string;
+    /** Call-to-action URL (where clicking the ad leads) */
+    actionUrl?: string;
 }
 
 /**

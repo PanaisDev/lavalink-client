@@ -8,6 +8,7 @@ import type { DestroyReasonsType, PlayerJson, PlayerOptions } from "./Player";
 import type { ManagerQueueOptions } from "./Queue";
 import type { Track, UnresolvedTrack } from "./Track";
 import type { AdvertisementTrack } from "./Advertisement";
+import type { AdImpression } from "../AdvertisementAnalytics";
 import type { GuildShardPayload, SearchPlatform, SponsorBlockChaptersLoaded, SponsorBlockChapterStarted, SponsorBlockSegmentSkipped, SponsorBlockSegmentsLoaded, TrackExceptionEvent, TrackEndEvent, TrackStuckEvent, WebSocketClosedEvent, TrackStartEvent, LyricsFoundEvent, LyricsNotFoundEvent, LyricsLineEvent } from "./Utils";
 
 /**
@@ -217,6 +218,12 @@ export interface LavalinkManagerEvents<CustomPlayerT extends Player = Player> {
      * @event Manager#advertisementError
      */
     "advertisementError": (player: CustomPlayerT, ad: AdvertisementTrack | null, error: Error | string) => void;
+
+    /**
+     * Emitted when an ad impression is recorded (after ad ends)
+     * @event Manager#advertisementImpression
+     */
+    "advertisementImpression": (player: CustomPlayerT, impression: AdImpression) => void;
 }
 /**
  * The Bot client Options needed for the manager

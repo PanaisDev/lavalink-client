@@ -1,6 +1,7 @@
 import type { Player } from "./Player";
 import type { AdvertisementTrack, AdvertisementOptions, AdvertisementState } from "./Types/Advertisement";
 import { DebugEvents } from "./Constants";
+import { AdvertisementAnalytics, type AdImpression } from "./AdvertisementAnalytics";
 
 /**
  * Advertisement Manager for a Player
@@ -9,6 +10,9 @@ import { DebugEvents } from "./Constants";
 export class AdvertisementManager {
     /** The associated player */
     public readonly player: Player;
+
+    /** Analytics instance for tracking impressions */
+    public readonly analytics: AdvertisementAnalytics = new AdvertisementAnalytics();
 
     /** Configuration options */
     private options: AdvertisementOptions = {
@@ -219,9 +223,29 @@ export class AdvertisementManager {
         const ad = this.state.current;
         if (!ad) return;
 
+        const startedAt = this.state.startedAt;
+        const listenDuration = startedAt ? Date.now() - startedAt : ad.duration;
+
         this.state.current = null;
         this.state.isPlaying = false;
         this.state.startedAt = null;
+
+        // Record impression for analytics
+        const impression: AdImpression = {
+            adId: ad.adId,
+            guildId: this.player.guildId,
+            timestamp: Date.now(),
+            listenersCount: 1, // Can be enhanced with actual voice channel member count
+            duration: ad.duration,
+            completed: reason === "FINISHED",
+            skipped: reason === "SKIPPED",
+            skipPosition: reason === "SKIPPED" ? listenDuration : undefined,
+            category: ad.userData?.category as string | undefined
+        };
+        this.analytics.recordImpression(impression);
+
+        // Emit impression event
+        this.player.LavalinkManager.emit("advertisementImpression", this.player, impression);
 
         this._emitDebugEvent(DebugEvents.AdvertisementEnd, {
             state: "log",

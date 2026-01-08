@@ -16,3 +16,4 @@ export * from "./structures/Constants";
 export * from "./structures/Types/Manager";
 export * from "./structures/AdvertisementManager";
 export * from "./structures/Types/Advertisement";
+export * from "./structures/AdvertisementAnalytics";

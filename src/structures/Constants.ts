@@ -66,6 +66,7 @@ export enum DebugEvents {
     AdvertisementSkip = "AdvertisementSkip",
     AdvertisementError = "AdvertisementError",
     AdvertisementQueueAdd = "AdvertisementQueueAdd",
+    AdvertisementImpression = "AdvertisementImpression",
 }
 
 /**
