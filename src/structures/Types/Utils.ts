@@ -365,6 +365,8 @@ export interface LavalinkPlayerVoice {
     endpoint: string;
     /** The Voice SessionId */
     sessionId: string;
+    /** The Voice Channel Id */
+    channelId?: string;
     /** Wether or not the player is connected */
     connected?: boolean;
     /** The Ping to the voice server */
@@ -524,6 +526,8 @@ export interface VoiceServer {
     guild_id: string;
     /** Server Endpoint */
     endpoint: string;
+    /** Voice Channel Id (Lavalink v4 DAVE support) */
+    channel_id?: string;
 }
 
 export interface VoicePacket {
