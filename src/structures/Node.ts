@@ -441,7 +441,7 @@ export class LavalinkNode {
      * player.node.destroyPlayer(player.guildId);
      * ```
      */
-    public async destroyPlayer(guildId): Promise<void> {
+    public async destroyPlayer(guildId: string): Promise<void> {
         if (!this.sessionId) throw new Error("The Lavalink-Node is either not ready, or not up to date!");
 
         return this.request(`/sessions/${this.sessionId}/players/${guildId}`, r => { r.method = "DELETE"; });
@@ -1050,7 +1050,7 @@ export class LavalinkNode {
         }
 
         // just for res
-        if (res?.guildId === "string" && typeof res?.voice !== "undefined") {
+        if (typeof res?.guildId === "string" && typeof res?.voice !== "undefined") {
             const player = this._LManager.getPlayer(data.guildId);
             if (!player) return;
 
